@@ -5,6 +5,19 @@ import { Component } from '@angular/core';
   templateUrl: './compteur.component.html',
   styleUrls: ['./compteur.component.scss']
 })
-export class CompteurComponent {
+
+export class CompteurComponent
+{
+  cpt: number = 0;
+
+  onClickIncrement()
+  {
+    this.cpt++;
+  }
+
+  onClickDecrement()
+  {
+    this.cpt--;
+  }
 
 }
