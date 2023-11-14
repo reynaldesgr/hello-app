@@ -1,0 +1,24 @@
+<!-- students.component.html -->
+
+<div class="students-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>Gender</th>
+        <th>Course fee</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of STUDENTS" class="student-info">
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.dateOfBirth | date:'yyyy-MM-dd' }}</td>
+        <td>{{ student.gender === 'Female' ? 'Ms.' : 'Mrs.'}}</td>
+        <td>$ {{ student.courseFee }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

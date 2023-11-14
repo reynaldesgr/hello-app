@@ -1,4 +1,8 @@
-<button id="b1" (click)="onClickIncrement()">Incrémenter</button>
-<button id="b2" (click)="onClickDecrement()">Décrémenter</button>
+<button [id]="identifierIncrement" (click)="onClickIncrement()" [disabled]="cpt > 11">Incrémenter</button>
+<button [id]="identifierDecrement" (click)="onClickDecrement()" [disabled]="cpt < 0">Décrémenter</button>
 
+<!-- *ngIf : directive structuelle utilisée pour conditionnellement inclure ou exclure un élément du DOM -->
+
+<p id="alertExceed" *ngIf="cpt > 11">Le compteur ne peut pas dépasser 11.</p>
+<p id="alertNeg"    *ngIf="cpt < 0">Le compteur ne peut pas être inférieur à 0.</p>
 <p>Compteur : {{cpt}}</p>
