@@ -12,10 +12,11 @@
       </tr>
     </thead>
     <tbody>
+    <!-- itération sur la liste STUDENTS -->
       <tr *ngFor="let student of STUDENTS" class="student-info">
         <td>{{ student.id }}</td>
         <td>{{ student.name }}</td>
-        <td>{{ student.dateOfBirth | date:'yyyy-MM-dd' }}</td>
+        <td>{{ student.dateOfBirth | date:'dd/MM/yyyy' }}</td>
         <td>{{ student.gender === 'Female' ? 'Ms.' : 'Mrs.'}}</td>
         <td>$ {{ student.courseFee }}</td>
       </tr>
