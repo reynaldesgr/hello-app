@@ -8,17 +8,22 @@
         <th>Name</th>
         <th>DOB</th>
         <th>Gender</th>
+        <th>Profile Picture</th>
         <th>Course fee</th>
+        <th>Supprimer</th>
       </tr>
     </thead>
     <tbody>
-    <!-- itération sur la liste STUDENTS -->
       <tr *ngFor="let student of STUDENTS" class="student-info">
-        <td>{{ student.id }}</td>
-        <td>{{ student.gender == 'Female' ? 'Ms.' : 'Mr.'}} {{student.name }}</td>
+        <td>{{ student.id | uppercase }}</td>
+        <td>{{ student | namePrefix }}</td>
         <td>{{ student.dateOfBirth | date:'dd/MM/yyyy' }}</td>
         <td>{{ student.gender | lowercase }}</td>
-        <td>$ {{ student.courseFee }}</td>
+        <td> <img [src]="student.picture" alt="Profile Picture" style="width: 50px; height: 50px;"></td>
+        <td>{{ student.courseFee }} $</td>
+        <td>
+          <button (click)="onDeleteStudent(student.id)">Supprimer</button>
+        </td>
       </tr>
     </tbody>
   </table>

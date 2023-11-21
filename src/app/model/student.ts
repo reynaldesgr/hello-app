@@ -1,8 +1,18 @@
-export interface Student
+export class Student
 {
-  id:           number;
-  name :        string;
+  id          : string;
+  name        : string;
   dateOfBirth : Date;
-  gender :      'Male' | 'Female';
-  courseFee :   number;
+  gender      : string;
+  courseFee   : number;
+  picture     : string;
+
+  constructor(id: string, name: string, dateOfBirth: Date, gender: string, picture: string, courseFee: number) {
+    this.id = id;
+    this.name = name;
+    this.dateOfBirth = dateOfBirth;
+    this.gender = gender;
+    this.picture = picture;
+    this.courseFee = courseFee;
+  }
 }
