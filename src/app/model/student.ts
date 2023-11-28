@@ -3,6 +3,11 @@ export class Student
   id          : string;
   name        : string;
   dateOfBirth : Date;
+  tutor?:
+  {
+    firstName: string;
+    lastName: string;
+  };
   gender      : string;
   courseFee   : number;
   picture     : string;

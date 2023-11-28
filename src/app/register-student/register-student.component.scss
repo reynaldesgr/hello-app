@@ -1,0 +1,37 @@
+/* register-student.component.scss */
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Margin and padding for form fields */
+mat-form-field {
+  width: 50%;
+}
+
+/* Styling for error messages */
+mat-error {
+  color: #d9534f; /* Bootstrap's danger color */
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Styling for the submit button */
+button {
+  margin-top: 20px;
+  background-color: #5bc0de; /* Bootstrap's info color */
+  color: #fff;
+}
+
+/* Styling for the submit button when disabled */
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

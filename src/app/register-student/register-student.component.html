@@ -1,0 +1,107 @@
+
+<!-- register-student.component.html -->
+
+<div>
+  <h2>Form: Register Student</h2>
+
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+    <!-- Angular Material Input for First Name -->
+    <mat-form-field>
+      <mat-label>First Name:</mat-label>
+      <input matInput type="text" id="firstName" formControlName="firstName" />
+      <mat-error *ngIf="myForm.get('firstName')?.hasError('required') && myForm.get('firstName')?.touched">
+        First Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Angular Material Input for Last Name -->
+    <mat-form-field>
+      <mat-label>Last Name:</mat-label>
+      <input matInput type="text" id="lastName" formControlName="lastName" />
+      <mat-error *ngIf="myForm.get('lastName')?.hasError('required') && myForm.get('lastName')?.touched">
+        Last Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Angular Material Input for Email -->
+    <mat-form-field>
+      <mat-label>Email:</mat-label>
+      <input matInput type="email" id="email" formControlName="email" />
+      <mat-error *ngIf="myForm.get('email')?.hasError('required') && myForm.get('email')?.touched">
+        Email is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Angular Material Input for Date of Birth -->
+    <mat-form-field>
+      <mat-label>Date of Birth:</mat-label>
+      <input matInput type="date" id="dateOfBirth" formControlName="dateOfBirth" />
+      <mat-error *ngIf="myForm.get('dateOfBirth')?.hasError('required') && myForm.get('dateOfBirth')?.touched">
+        Date of Birth is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Yes/No selector for tutor -->
+    <mat-form-field>
+      <mat-label>Is the student a minor?</mat-label>
+      <mat-select id="isMinor" formControlName="isMinor">
+        <mat-option value="false">No</mat-option>
+        <mat-option value="true">Yes</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Show the tutor section if "Yes" is selected in the previous section -->
+    <div *ngIf="myForm.get('isMinor')?.value === 'true'" formGroupName="tutor">
+
+      <!-- Angular Material Input for Tutor First Name -->
+      <mat-form-field>
+        <mat-label>Tutor First Name:</mat-label>
+        <input matInput type="text" id="tutorFirstName" formControlName="firstName" />
+        <mat-error *ngIf="myForm.get('tutor.firstName')?.hasError('required') && myForm.get('tutor.firstName')?.touched">
+          Tutor First Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Angular Material Input for Tutor Last Name -->
+      <mat-form-field>
+        <mat-label>Tutor Last Name:</mat-label>
+        <input matInput type="text" id="tutorLastName" formControlName="lastName" />
+        <mat-error *ngIf="myForm.get('tutor.lastName')?.hasError('required') && myForm.get('tutor.lastName')?.touched">
+          Tutor Last Name is required
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+    <!-- End Tutor Section -->
+
+    <!-- Angular Material Select for Gender -->
+    <mat-form-field>
+      <mat-label>Gender:</mat-label>
+      <mat-select id="gender" formControlName="gender">
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
+      </mat-select>
+      <mat-error *ngIf="myForm.get('gender')?.hasError('required') && myForm.get('gender')?.touched">
+        Gender is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Angular Material Input for Course Fee -->
+    <mat-form-field>
+      <mat-label>Course Fee:</mat-label>
+      <input matInput type="number" id="courseFee" formControlName="courseFee" />
+      <mat-error *ngIf="myForm.get('courseFee')?.hasError('required') && myForm.get('courseFee')?.touched">
+        Course Fee is required
+      </mat-error>
+      <mat-error *ngIf="myForm.get('courseFee')?.hasError('min') && myForm.get('courseFee')?.touched">
+        Course Fee must be at least 500
+      </mat-error>
+      <mat-error *ngIf="myForm.get('courseFee')?.hasError('max') && myForm.get('courseFee')?.touched">
+        Course Fee cannot exceed 5000
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" [disabled]="myForm.invalid">Register</button>
+  </form>
+</div>
