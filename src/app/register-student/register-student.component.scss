@@ -1,37 +1,31 @@
 /* register-student.component.scss */
-
-h2 {
-  text-align: center;
-  color: #333;
+mat-card-title{
+  color: white;
 }
 
-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Style du formulaire */
+mat-card {
+  max-width: 90%;
+  margin: auto;
 }
 
-/* Margin and padding for form fields */
+
+/* Style des champs de saisie */
 mat-form-field {
-  width: 50%;
+  width: 95%;
+  margin-bottom: 15px auto; /* Espace entre les champs de saisie */
+  margin-right: 30%;
 }
 
-/* Styling for error messages */
+/* Style du bouton de soumission */
+mat-card-actions button {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  margin-left: 50%;
+  margin-right: 50%;
+}
+
+/* Style des messages d'erreur */
 mat-error {
-  color: #d9534f; /* Bootstrap's danger color */
-  font-size: 12px;
-  margin-top: 5px;
+  color: red; /* Couleur du texte pour les messages d'erreur */
 }
 
-/* Styling for the submit button */
-button {
-  margin-top: 20px;
-  background-color: #5bc0de; /* Bootstrap's info color */
-  color: #fff;
-}
-
-/* Styling for the submit button when disabled */
-button[disabled] {
-  background-color: #ccc;
-  cursor: not-allowed;
-}

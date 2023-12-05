@@ -1,5 +1,7 @@
 <!-- students.component.html -->
 
+<app-register-student (addStudent)="addStudent($event)"></app-register-student>
+
 <div class="students-container">
   <table>
     <thead>
@@ -28,5 +30,3 @@
     </tbody>
   </table>
 </div>
-
-<app-register-student></app-register-student>

@@ -1,5 +1,6 @@
-import { Component, NgModule, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, NgModule, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators, NgForm } from '@angular/forms';
+import { Student } from '../model/student';
 
 
 @Component({
@@ -13,45 +14,45 @@ export class RegisterStudentComponent implements OnInit
 {
   myForm!: FormGroup;
 
-  constructor(private fb: FormBuilder){}
+  // Event emitter : pour ajouter un student dans la liste (composant parent)
+  @Output() addStudent: EventEmitter<Student> = new EventEmitter<Student>();
 
+  private idCounter : number = 6;
+
+  constructor(private fb: FormBuilder){}
   ngOnInit(): void
   {
     this.myForm =
     this.fb.group({
-      id:           ['', [Validators.required]],
       name:         ['', [Validators.required]],
       dateOfBirth:  ['', [Validators.required]],
       gender:       ['', [Validators.required]],
       courseFee:    ['', [Validators.required]],
-      hasTutor:     ['', [Validators.required]],
-
-      tutor: this.fb.group(
-        {
-        firstName: ['', [Validators.required]],
-        lastName:  ['', [Validators.required]]
-      })
     });
   }
 
  // Update the 'picture' field based on the selected 'gender'
- private updatePictureBasedOnGender(gender: string): string {
-  const defaultMalePicture = 'https://www.w3schools.com/howto/img_avatar.png';
-  const defaultFemalePicture = 'https://www.w3schools.com/howto/img_avatar2.png';
+ private pictureBasedOnGender(gender: string): string {
+    const defaultMalePicture   = 'https://www.w3schools.com/howto/img_avatar.png';
+    const defaultFemalePicture = 'https://www.w3schools.com/howto/img_avatar2.png';
 
-  // Update the 'picture' field based on the 'gender' value
-
-  return gender === 'Female' ? defaultFemalePicture : defaultMalePicture;
-
-}
-
-  onSubmit(): void
-  {
-    if (this.myForm.valid)
-    {
-      console.log('Données du formulaire : ', this.myForm.value);
-    }
+    // Update the 'picture' field based on the 'gender' value
+    return gender === 'Female' ? defaultFemalePicture : defaultMalePicture;
   }
 
+  onSubmit(): void {
+    if (this.myForm.valid)
+    {
+      const newStudent : Student =
+      {
+        id : 'STD' + this.idCounter++,
+        ...this.myForm.value, // Inclut tout les autres champs du formulaire (apart 'id')
+        picture : this.pictureBasedOnGender(this.myForm.value.gender)
+      }
+      this.addStudent.emit(newStudent);
+
+      this.myForm.reset();
+    }
+  }
 }
 
