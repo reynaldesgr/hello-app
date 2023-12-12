@@ -1,5 +1,5 @@
-import { Component, EventEmitter, NgModule, OnInit, Output, ViewChild } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators, NgForm } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../model/student';
 
 
@@ -8,7 +8,6 @@ import { Student } from '../model/student';
   templateUrl: './register-student.component.html',
   styleUrls: ['./register-student.component.scss']
 })
-
 
 export class RegisterStudentComponent implements OnInit
 {
@@ -28,8 +27,28 @@ export class RegisterStudentComponent implements OnInit
       dateOfBirth:  ['', [Validators.required]],
       gender:       ['', [Validators.required]],
       courseFee:    ['', [Validators.required]],
+      tutor:        ['', []]
     });
+
+    /*this.myForm.get('dateOfBirth')?.valueChanges.subscribe((dateOfBirth) => {
+      this.updateTutorValidator(dateOfBirth);
+    });*/
   }
+
+  // + c.f. cours pour gérer le tutor
+  /*private updateTutorValidator(dateOfBirth: string): void {
+    const today = new Date();
+    const birthDate = new Date(dateOfBirth);
+    const age = today.getFullYear() - birthDate.getFullYear();
+
+    if (age < 18) {
+      this.myForm.get('tutor')?.setValidators([Validators.required]);
+    } else {
+      this.myForm.get('tutor')?.clearValidators();
+    }
+
+    this.myForm.get('tutor')?.updateValueAndValidity();
+  }*/
 
  // Update the 'picture' field based on the selected 'gender'
  private pictureBasedOnGender(gender: string): string {
